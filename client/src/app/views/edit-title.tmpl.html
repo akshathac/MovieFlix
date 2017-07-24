@@ -1,0 +1,67 @@
+<div class="btn-group"><div class="btn-group pull-right">
+    <button class="btn btn-primary" type="button" ng-click="titleVm.signOut()" >Sign out</button>
+</div>
+</div>
+<form name="userForm" ng-submit="userForm.$setPristine(); addTitleVm.editTitle()" class="form-horizontal">
+    <div class="form-group">
+        <label for="title" class="col-sm-2 control-label">Title</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="title" name="title" placeholder="Title" ng-model="addTitleVm.title.title" required minlength="4">
+        </div>
+    </div>
+    <div class="form-group">
+        <label for="year" class="col-sm-2 control-label">Year</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="year" name="year" placeholder="Year" ng-model="addTitleVm.title.year" required minlength="4">
+    </div></div>
+    <div class="form-group">
+        <label for="rated" class="col-sm-2 control-label">Rated</label>
+        <div class="col-sm-10">
+        <input type="text" class="form-control" id="rated" name="rated" placeholder="Rated" ng-model="addTitleVm.title.rated" required>
+    </div></div>
+    <div class="form-group">
+        <label for="released" class="col-sm-2 control-label">Released</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="released" name="released" placeholder="Released" ng-model="addTitleVm.title.released" required>
+    </div></div>
+    <div class="form-group">
+        <label for="runtime" class="col-sm-2 control-label">Runtime</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="runtime" name="runtime" placeholder="Runtime" ng-model="addTitleVm.title.runtime" required>
+    </div></div>
+    <div class="form-group" >
+        <label for="genre" class="col-sm-2 control-label">Genre</label>
+        <div class="col-sm-4"><select class="form-control" id="genre" name="genre" ng-model="addTitleVm.title.genre"><option ng-repeat="genre in addTitleVm.genres" value="{{genre}}" ng-selected="{{genre == addTitleVm.title.genre}}"></option></select>
+    </div></div>
+    <div class="form-group" >
+        <label for="director" class="col-sm-2 control-label" >Director</label>
+        <div class="col-sm-10"> <input type="text" class="form-control" id="director" name="director" placeholder="Director" ng-model="addTitleVm.title.director" required>
+    </div></div>
+    <div class="form-group" >
+        <label for="actors" class="col-sm-2 control-label">Actors</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="actors" name="actors" placeholder="Actors" ng-model="addTitleVm.title.actors" required>
+    </div></div>
+    <div class="form-group" >
+        <label for="plot" class="col-sm-2 control-label">Plot</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="plot" name="plot" placeholder="Plot" ng-model="addTitleVm.title.plot" required>
+    </div></div>
+    <div class="form-group">
+        <label for="language" class="col-sm-2 control-label">Language</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="language" name="language" placeholder="" ng-model="addTitleVm.title.language" required>
+    </div></div>
+    <div class="form-group" >
+        <label for="country" class="col-sm-2 control-label">Country</label>
+        <div class="col-sm-10"><input type="text" class="form-control" id="country" name="country" placeholder="" ng-model="addTitleVm.title.country" required>
+    </div></div>
+    <div class="form-group" >
+        <label for="awards" class="col-sm-2 control-label">Awards</label>
+        <div class="col-sm-10"> <input type="text" class="form-control" id="awards" name="awards" placeholder="" ng-model="addTitleVm.title.awards" required>
+    </div></div>
+    <div class="form-group" >
+        <label for="type" class="col-sm-2 control-label">Type</label>
+        <div class="col-sm-10"> <input type="text" class="form-control" id="type" name="type" placeholder="" ng-model="addTitleVm.title.type" required>
+    </div></div>
+    <div class="form-group">
+        <div class="col-sm-offset-2 col-sm-2">
+        <button type="submit" class="btn btn-primary" >Submit</button>
+        </div>
+    </div>
+</form>

@@ -1,0 +1,85 @@
+<div class="btn-group pull-right">
+    <button class="btn btn-primary" type="button" ng-click="titleVm.signOut()" >Sign out</button>
+</div>
+<div class="btn-group btn-group-justified">
+<div class="dropdown btn-group">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Type
+        <span class="caret"></span>
+    </button>
+
+    <ul class="dropdown-menu" >
+        <li ng-repeat="type in titleVm.types" ><a ng-click="titleVm.setFilter(type)">{{type}}</a></li>
+    </ul>
+</div>
+<div class="dropdown btn-group">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Year
+        <span class="caret"></span></button>
+    <ul class="dropdown-menu" >
+        <li ng-repeat="year in titleVm.years"><a ng-click="titleVm.setFilter(year)">{{year}}</a></li>
+    </ul>
+</div>
+
+<div class="dropdown btn-group">
+    <button class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">Genre
+        <span class="caret"></span></button>
+    <ul class="dropdown-menu">
+        <li ng-repeat="genre in titleVm.genres" ><a ng-click="titleVm.setFilter(genre)">{{genre}}</a></li>
+    </ul>
+</div>
+<div class="btn-group">
+    <button class="btn btn-primary" type="button" ng-click="titleVm.sorter.sortBy='imdbRating'; titleVm.sorter.sortOrder=true;titleVm.searchText = 'Movie';" >Top rated Movies</button>
+</div>
+    <div class="btn-group">
+        <button class="btn btn-primary" type="button" ng-click="titleVm.sorter.sortBy='imdbRating'; titleVm.sorter.sortOrder=true;titleVm.searchText = 'Series';" >Top rated Series</button>
+    </div>
+</div>
+<input type="text" class="form-control" placeholder="Search Here..."
+                              ng-model="titleVm.searchText">
+
+
+<table class="table table-striped">
+    <thead>
+    <tr><th ng-show="{{titleVm.userType == 'Admin'}}"><a ng-href="#/add-title"  type="button" class="btn btn-primary">ADD</a>
+    </th>
+        <th></th>
+        <th ng-click="titleVm.sorter.sortBy='year'; titleVm.sorter.sortOrder = !titleVm.sorter.sortOrder;"><span
+                class="sortable-class pull-right"> YEAR <span class="glyphicon glyphicon-sort" aria-hidden="true"></span> </span></th>
+        <th ng-click="titleVm.sorter.sortBy='imdbRating'; titleVm.sorter.sortOrder = !titleVm.sorter.sortOrder;"><span
+                class="sortable-class"> IMDB RATINGS <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></span></th>
+        <th ng-click="titleVm.sorter.sortBy='imdbVotes'; titleVm.sorter.sortOrder = !titleVm.sorter.sortOrder;"><span
+                class="sortable-class"> IMDB VOTES <span class="glyphicon glyphicon-sort" aria-hidden="true"></span></span></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr ng-repeat="tittle in titleVm.titles | filter:titleVm.searchText | orderBy:titleVm.sorter.sortBy: titleVm.sorter.sortOrder">
+       <td class="col-lg-1" ng-show="{{titleVm.userType == 'Admin'}}">
+           <a ng-href="#/edit-title/00517a65-ddb8-4fa2-b82c-305b650715a1"  type="button" class="btn btn-primary">EDIT</a>
+           <button type="button" class="btn btn-primary"  ng-click="titleVm.deleteDialog()">
+               DELETE
+           </button>
+       </td>
+        <td class="col-lg-3">
+            <div class='thumbnail'><img class="img-responsive" ng-src="{{tittle.poster}}"/></div>
+        </td>
+        <td class="col-lg-6">
+            <div class="caption">
+                <h3 class="group inner text-info list-group-item-heading">{{tittle.title}} ({{tittle.year}})</h3>
+                <div class="well">{{tittle.type | uppercase }} : {{tittle.genre | uppercase }}
+                  <p>  {{tittle.released | date}}</p>
+                  <p class="group inner list-group-item-text">{{tittle.plot}}</p></div>
+                <a ng-href="#/title-detail/00517a65-ddb8-4fa2-b82c-305b650715a1">More details</a>
+            </div>
+        </td>
+        <td class="col-lg-1">
+            <a href="#" class="btn btn-info btn-lg">
+                <span class="glyphicon glyphicon-star"></span> {{tittle.imdbRating}}
+            </a>
+        </td>
+        <td class="col-lg-1">{{tittle.imdbVotes|number }}</td>
+
+    </tr>
+
+    </tbody>
+</table>
+
+<p ng-show="{{titleVm.titles.length}}">No results found</p>
